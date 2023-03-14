@@ -31,14 +31,23 @@ async function sendRequestToChatGPT(message) {
             'Authorization': `Bearer ${API_KEY}`
         },
         body: JSON.stringify({
-            'input': message
+            'prompt': message,
+            'max_tokens': 150,
+            'n': 1,
+            'stop': null,
+            'temperature': 1
         })
     };
 
     try {
         const response = await fetch(API_ENDPOINT, requestOptions);
         const data = await response.json();
-        return data.output || 'Error: The ChatGPT API did not return a valid response.';
+        console.log('ChatGPT API response:', data); // Log the API response
+        if (data.choices && data.choices.length > 0) {
+            return data.choices[0].text.trim();
+        } else {
+            return 'Error: The ChatGPT API did not return a valid response.';
+        }
     } catch (error) {
         console.error('Error fetching ChatGPT response:', error);
         return 'Error: Unable to fetch ChatGPT response.';
