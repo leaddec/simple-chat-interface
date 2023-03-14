@@ -2,7 +2,7 @@ const chatHistory = document.getElementById('chat-history');
 const userInput = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 
-const API_KEY = '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';
+const API_KEY = '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';
 const API_ENDPOINT = 'https://api.openai.com/v1/engines/davinci-codex/completions';
 
 sendBtn.addEventListener('click', async () => {
