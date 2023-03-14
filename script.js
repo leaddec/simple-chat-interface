@@ -40,4 +40,7 @@ async function sendRequestToChatGPT(message) {
         const data = await response.json();
         return data.output || 'Error: The ChatGPT API did not return a valid response.';
     } catch (error) {
-        console
+        console.error('Error fetching ChatGPT response:', error);
+        return 'Error: Unable to fetch ChatGPT response.';
+    }
+}
